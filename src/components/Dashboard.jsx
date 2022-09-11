@@ -51,7 +51,7 @@ export default function Dashboard() {
     }
 
     const verifyToken = () => {
-        fetch('http://localhost:5000/verify', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/verify', {
             method: 'POST',
             headers: {
                 "content-type": "application/json",

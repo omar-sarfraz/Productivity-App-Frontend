@@ -10,7 +10,7 @@ export default function Notes({ notes, setNotes, token }) {
     const setLocalNotes = () => {
         localStorage.setItem('notes', JSON.stringify(notes))
 
-        fetch('http://localhost:5000/home/notes', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/home/notes', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json',

@@ -6,7 +6,7 @@ export default function Header({ saved, setSaved }) {
     const [totalLength, setTotalLength] = useState(0)
 
     useEffect(() => {
-        fetch('http://localhost:5000/tips')
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/tips')
             .then(resp => resp.json())
             .then(data => {
                 setTotalLength(data.tips.length)

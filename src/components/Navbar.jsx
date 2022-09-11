@@ -14,9 +14,16 @@ export default function Navbar({ setCurrent }) {
         isMobile ? setIsNavOpen(prev => !prev) : setIsNavOpen(true)
     }
 
+    const handleProfileClick = () => {
+        setIsProfileMenuOpen((prev) => !prev)
+    }
+
     function handleLink(set) {
         setCurrent(set);
-        handleNavClick();
+        if (set === SAVED)
+            handleProfileClick()
+        else
+            handleNavClick();
     }
 
     useEffect(() => {
@@ -42,10 +49,6 @@ export default function Navbar({ setCurrent }) {
         }
     }, [isMobile])
 
-    const handleProfileClick = () => {
-        setIsProfileMenuOpen((prev) => !prev)
-    }
-
     const handleLogout = () => {
         localStorage.clear()
         navigate('/')
@@ -54,7 +57,7 @@ export default function Navbar({ setCurrent }) {
     function renderProfileMenu() {
         return (
             <div className='profile-btn-menu'>
-                <button className='cross2' onClick={handleProfileClick} ><img src="assets/Cross-icon.svg" alt="Close" /></button>
+                <button className='cross2' onClick={handleProfileClick} ><img src="assets/cross-icon.svg" alt="Close" /></button>
                 <div className='profile-btn-menu-div'><button onClick={() => handleLink(SAVED)}> <img src="assets/save-icon.svg" alt="Saved" /> Saved</button></div>
                 <div className='profile-btn-menu-div'><button onClick={() => handleLogout()}> <img src="assets/logout-icon.svg" alt="LogOut" /> LogOut</button></div>
             </div>
@@ -70,7 +73,7 @@ export default function Navbar({ setCurrent }) {
                 <button onClick={handleNavClick} className={'nav-btn'}><img src="assets/hamburger.svg" alt="Menu" /></button>
                 :
                 <nav>
-                    <button className='cross' onClick={handleNavClick}><img src="assets/Cross-icon.svg" alt="Close" /></button>
+                    <button className='cross' onClick={handleNavClick}><img src="assets/cross-icon.svg" alt="Close" /></button>
                     <ul>
                         <li> <button onClick={() => handleLink(POMODORO)}><img src="assets/timer-icon-nav.svg" alt="Timer Icon" /> Pomodoro Timer</button> </li>
                         <li> <button onClick={() => handleLink(TODOLIST)}><img src="assets/list-icon-nav.svg" alt="List Icon" /> To Do List</button> </li>

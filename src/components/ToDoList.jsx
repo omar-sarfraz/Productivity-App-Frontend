@@ -6,7 +6,7 @@ export default function ToDoList({ toDoList, setToDoList, token }) {
     const setLocalList = () => {
         localStorage.setItem('toDoList', JSON.stringify(toDoList))
 
-        fetch('http://localhost:5000/home/list', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/home/list', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json',

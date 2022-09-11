@@ -22,6 +22,11 @@ export default function Auth() {
     const [formData, setFormData] = useState(clear)
     const [token, setToken] = useState('')
 
+    useEffect(() => {
+        if (localStorage.getItem('token'))
+            navigate('/home')
+    }, [])
+
     const handleSwitch = () => {
         setIsLogin(prev => !prev)
         setError({ message: '', show: false })
@@ -39,7 +44,7 @@ export default function Auth() {
             password: formData.password
         }
 
-        fetch('http://localhost:5000/login', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/login', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -69,7 +74,7 @@ export default function Auth() {
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        fetch('http://localhost:5000/signup', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/signup', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

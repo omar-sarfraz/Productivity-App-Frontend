@@ -10,7 +10,7 @@ export default function Pomodoro({ timerSettings, setTimerSettings, token }) {
     const setLocalTimer = () => {
         localStorage.setItem('timerSettings', JSON.stringify(timerSettings))
 
-        fetch('http://localhost:5000/home/timer', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/home/timer', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json',

@@ -651,6 +651,18 @@ textarea {
   width: 50%;
 }
 
+.profile-btn {
+  position: relative;
+  bottom: 0;
+  right: -5px;
+  font-size: 2rem;
+  background-color: #787FA3;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loading {
   background-color: white;
   width: 100%;
@@ -773,15 +785,7 @@ textarea {
   }
 
   .profile-btn {
-    position: relative;
-    bottom: 0;
     right: 30px;
-    font-size: 2rem;
-    background-color: #787FA3;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .profile-main {

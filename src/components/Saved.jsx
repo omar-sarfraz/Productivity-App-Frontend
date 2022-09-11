@@ -4,7 +4,7 @@ export default function Saved({ saved, setSaved, token }) {
 
     const setLocalSaved = () => {
 
-        fetch('http://localhost:5000/home/saved', {
+        fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/home/saved', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json',
