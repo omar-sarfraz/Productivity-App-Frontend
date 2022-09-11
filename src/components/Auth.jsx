@@ -21,6 +21,7 @@ export default function Auth() {
     const [isLogin, setIsLogin] = useState(true)
     const [formData, setFormData] = useState(clear)
     const [token, setToken] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('token'))
@@ -39,6 +40,8 @@ export default function Auth() {
     const handleLogin = (event) => {
         event.preventDefault();
 
+        setLoading(true)
+
         let loginData = {
             email: formData.email,
             password: formData.password
@@ -55,6 +58,7 @@ export default function Auth() {
                 let data = await resp.json()
                 if (!resp.ok) {
                     setError({ message: data.message, show: true })
+                    setLoading(false)
                 } else {
                     clearForm();
                 }
@@ -67,12 +71,15 @@ export default function Auth() {
                 localStorage.setItem('toDoList', JSON.stringify(data.user.toDoList))
                 localStorage.setItem('notes', JSON.stringify(data.user.notes))
                 localStorage.setItem('saved', JSON.stringify(data.user.saved))
+                setLoading(false)
             })
             .catch(err => console.log(err))
     }
 
     const handleSignUp = (event) => {
         event.preventDefault();
+
+        setLoading(true)
 
         fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/signup', {
             method: 'POST',
@@ -85,6 +92,7 @@ export default function Auth() {
                 let data = await resp.json()
                 if (!resp.ok) {
                     setError({ message: data.message, show: true })
+                    setLoading(false)
                 } else {
                     clearForm();
                 }
@@ -97,6 +105,7 @@ export default function Auth() {
                 localStorage.setItem('toDoList', JSON.stringify(data.user.toDoList))
                 localStorage.setItem('notes', JSON.stringify(data.user.notes))
                 localStorage.setItem('saved', JSON.stringify(data.user.saved))
+                setLoading(false)
             })
             .catch(err => console.log(err))
     }
@@ -123,7 +132,10 @@ export default function Auth() {
                     <label htmlFor="password">Enter Your Password *</label>
                     <input type="password" name="password" id="password" value={formData.password} onChange={handleChange} required />
                     {error.show ? renderError() : <div></div>}
-                    <button type="submit"> <img src="assets/email-icon.svg" alt="Email" /> Login With Email</button>
+                    <button type="submit">
+                        {loading ? <img src="assets/bubble-loading.svg" alt="Loading" /> : <img src="assets/email-icon.svg" alt="Email" />}
+                        {loading ? null : <div>Login With Email</div>}
+                    </button>
                 </form>
                 <p>Don't have an account? <button className="signup-redirect-btn" onClick={handleSwitch}>SignUp</button></p>
             </div>
@@ -146,7 +158,10 @@ export default function Auth() {
                     <label htmlFor="confirmPassword">Confirm Password *</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" required value={formData.confirmPassword} onChange={handleChange} />
                     {error.show ? renderError() : <div></div>}
-                    <button type="submit"> <img src="assets/email-icon.svg" alt="Email" /> SignUp With Email</button>
+                    <button type="submit">
+                        {loading ? <img src="assets/bubble-loading.svg" alt="Loading" /> : <img src="assets/email-icon.svg" alt="Email" />}
+                        {loading ? null : <div>SignUp With Email</div>}
+                    </button>
                 </form>
                 <p>Already have an account? <button className="signup-redirect-btn" onClick={handleSwitch}>SignIn</button></p>
             </div>
