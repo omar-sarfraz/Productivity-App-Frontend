@@ -33,6 +33,13 @@ button:hover {
   align-items: center;
 }
 
+.save {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  gap: 1rem;
+}
+
 .navbar {
   display: flex;
   align-items: flex-end;

@@ -4,6 +4,7 @@ export default function Header({ saved, setSaved }) {
     const [tips, setTips] = useState([{ text: 'Loading...' }])
     const [count, setCount] = useState(0)
     const [totalLength, setTotalLength] = useState(0)
+    const [tick, setTick] = useState(false)
 
     useEffect(() => {
         fetch('https://productivity-app-backend-bilcyfqs6-omar-sarfraz.vercel.app/tips')
@@ -20,6 +21,7 @@ export default function Header({ saved, setSaved }) {
     }, [saved])
 
     function handleSave() {
+        setTick(true)
         let newList = saved.filter((item) => item.text !== tips[count].text)
         newList.unshift(tips[count])
         setSaved(newList)
@@ -27,6 +29,7 @@ export default function Header({ saved, setSaved }) {
     }
 
     function handleNext() {
+        setTick(false)
         if (count === totalLength - 1) {
             setCount(0)
         } else {
@@ -44,7 +47,10 @@ export default function Header({ saved, setSaved }) {
                     <div className='hero-child2'>
                         <div>
                             <h2>Productivity Tips</h2>
-                            <button onClick={handleSave}><img src="assets/save-icon-tips.svg" alt="Save" /></button>
+                            <button onClick={handleSave} className="save">
+                                {tick ? 'Saved!' : ''}
+                                <img src="assets/save-icon-tips.svg" alt="Save" />
+                            </button>
                         </div>
                         <p>{tips[count].text}</p>
                         <div className='next-parent'>
